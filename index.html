@@ -96,7 +96,15 @@
             <!-- Replaced navigation with the hidden PWA Install button -->
             <button id="installAppBtn" class="pill fill" style="display: none;">Install the App</button>
         </header>
-        <main id="app" tabindex="-1"></main>
+        <main id="app" tabindex="-1">
+    <!-- Fallback UI: Disappears automatically when app.js mounts successfully -->
+    <div style="text-align: center; padding: 15vh 20px; max-width: 600px; margin: 0 auto;">
+        <h2 style="margin-bottom: 15px;">Ready to begin?</h2>
+        <p class="mute" style="margin-bottom: 30px;">If the interface hasn't loaded automatically, tap below to start your journey.</p>
+        <!-- Forces the hash route and hard reloads the execution cycle -->
+        <a href="#/" class="btn" onclick="window.location.hash='#/'; window.location.reload();">Enter Soul Finder</a>
+    </div>
+</main>
         <footer class="foot">
             <a href="#/terms">Terms</a>
             <a href="#/privacy">Privacy</a>
