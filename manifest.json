@@ -2,7 +2,7 @@
   "name": "Soul Finder",
   "short_name": "Soul Finder",
   "description": "Discover the universe within you.",
-  "start_url": "./",
+  "start_url": "./#/",
   "display": "standalone",
   "background_color": "#121a36",
   "theme_color": "#121a36",
