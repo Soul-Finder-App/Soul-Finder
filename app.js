@@ -253,3 +253,8 @@ window.addEventListener('appinstalled', () => {
     installButton.style.display = 'none';
   }
 });
+
+// Default Route Fallback
+if (!window.location.hash) {
+    window.location.replace(window.location.pathname + '#/');
+}
