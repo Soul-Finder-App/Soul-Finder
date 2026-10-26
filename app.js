@@ -211,3 +211,45 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
+
+// PWA Installation Logic
+let deferredPrompt;
+const installButton = document.getElementById('installAppBtn');
+
+// Intercept the browser's install prompt
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Stash the event so it can be triggered later
+  deferredPrompt = e;
+  // Unhide the UI button
+  if (installButton) {
+    installButton.style.display = 'inline-block'; // Or 'flex' / 'block' depending on your CSS
+  }
+});
+
+// Handle the button click
+if (installButton) {
+  installButton.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      // Show the native install prompt
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to the install prompt: ${outcome}`);
+      // We've used the prompt, and can't use it again, throw it away
+      deferredPrompt = null;
+      // Hide the button again
+      installButton.style.display = 'none';
+    }
+  });
+}
+
+// Optional: Hide the button if the app is successfully installed
+window.addEventListener('appinstalled', () => {
+  console.log('PWA was installed');
+  if (installButton) {
+    installButton.style.display = 'none';
+  }
+});
