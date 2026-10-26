@@ -196,3 +196,18 @@ function compose(d){const[y,m,dd]=d.dob.split("-").map(Number),a=red(m),b=red(dd
 
 return compose({name:"Amara (fictional)",dob:"1990-07-14",soul:[0,0,1,3,2],roles:[1,0,1,0,0,0,1,3,0,0,2],rel:[1,2,0],draw:1,style:1,sample:true,matter:0,spirit:1,bound:2});}
 })();
+
+
+// Service Worker Registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    // Relative path ensures it works in the /Soul-Finder/ subdirectory
+    navigator.serviceWorker.register('./sw.js')
+      .then((registration) => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      })
+      .catch((err) => {
+        console.error('ServiceWorker registration failed: ', err);
+      });
+  });
+}
